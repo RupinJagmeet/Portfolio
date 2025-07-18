@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jagmeet Singh - Senior Business Analyst</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 100%);
+            color: #e0e6ed;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated background particles */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #00d4ff;
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(20px) rotate(240deg); }
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00d4ff, #7b68ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            color: #e0e6ed;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+            transition: left 0.3s ease;
+        }
+
+        .nav-item:hover::before {
+            left: 100%;
+        }
+
+        .nav-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 2rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-name {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00d4ff, #7b68ee, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            color: #a0a9b8;
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-contact {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #e0e6ed;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        .section {
+            margin: 4rem 0;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00d4ff, #7b68ee, #ff6b6b);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #00d4ff;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #00d4ff, #7b68ee);
+            border-radius: 2px;
+        }
+
+        /* Profile Section */
+        .profile-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #b0b7c3;
+            text-align: justify;
+        }
+
+        /* Core Competencies */
+        .competencies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .competency-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .competency-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(123, 104, 238, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .competency-item:hover::before {
+            left: 100%;
+        }
+
+        .competency-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .competency-item h3 {
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+        
+        .experience-header {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            position: relative;
+        }
+
+        .experience-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #00d4ff, #7b68ee);
+        }
+
+        .experience-title {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            font-size: 1.2rem;
+            color: #7b68ee;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-duration {
+            color: #a0a9b8;
+            font-size: 0.9rem;
+            background: rgba(123, 104, 238, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #00d4ff, #7b68ee);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.3);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: #b0b7c3;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            background: rgba(123, 104, 238, 0.3);
+            color: #7b68ee;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(123, 104, 238, 0.5);
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .achievement-card:hover::before {
+            opacity: 1;
+        }
+
+        .achievement-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-title {
+            font-size: 1.3rem;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        /* Education & Certifications */
+        .edu-cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .edu-cert-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .edu-cert-title {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .edu-cert-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #7b68ee;
+            transition: all 0.3s ease;
+        }
+
+        .edu-cert-item:hover {
+            transform: translateX(10px);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .edu-cert-degree {
+            font-size: 1.2rem;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-cert-institution {
+            color: #7b68ee;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-cert-year {
+            color: #a0a9b8;
+            font-size: 0.9rem;
+        }
+
+        /* Technical Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-5px);
+            color: #00d4ff;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            margin: 5% auto;
+            padding: 3rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        .modal-content-inner {
+            max-height: 80vh;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+        
+        .modal-content-inner::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        .modal-content-inner::-webkit-scrollbar-track {
+            background: #1a1a2e;
+            border-radius: 10px;
+        }
+        
+        .modal-content-inner::-webkit-scrollbar-thumb {
+            background: #00d4ff;
+            border-radius: 10px;
+            border: 2px solid #1a1a2e;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: #00d4ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #ff6b6b;
+            transform: scale(1.2);
+        }
+        
+        .modal-title {
+            color: #ff6b6b;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-info-item {
+            margin-bottom: 2rem;
+            border-left: 3px solid #7b68ee;
+            padding-left: 1rem;
+        }
+        
+        .modal-info-item h3 {
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-info-item ul {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+        
+        .modal-info-item ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Responsive Design */
+		body.modal-open {
+    overflow: hidden;
+}
+.modal-content-inner {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+.modal-content-inner::-webkit-scrollbar {
+    width: 10px;
+}
+.modal-content-inner::-webkit-scrollbar-track {
+    background: #1a1a2e;
+    border-radius: 10px;
+}
+.modal-content-inner::-webkit-scrollbar-thumb {
+    background: #00d4ff;
+    border-radius: 10px;
+    border: 2px solid #1a1a2e;
+}
+
+        @media (max-width: 768px) {
+            .hero-name {
+                font-size: 2.5rem;
+            }
+            
+            .hero-contact {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .edu-cert-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 80px 1rem 2rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            background: rgba(10, 10, 10, 0.8);
+            color: #b0b7c3;
+        }
+        
+        .footer-links {
+            margin-top: 1rem;
+        }
+        
+        .footer-links a {
+            color: #00d4ff;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #7b68ee;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-particles"></div>
+
+    <div class="nav-container">
+        <div class="nav-content">
+            <div class="nav-logo">JAGMEET SINGH</div>
+            <nav class="nav-menu">
+                <a href="#hero" class="nav-item">Home</a>
+                <a href="#profile" class="nav-item">Profile</a>
+                <a href="#experience" class="nav-item">Experience</a>
+                <a href="#projects" class="nav-item">Projects</a>
+                <a href="#achievements" class="nav-item">Achievements</a>
+                <a href="#education" class="nav-item">Education</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-name">JAGMEET SINGH</h1>
+                <p class="hero-title">Senior Business Analyst | Healthcare, ERP & CRM Specialist</p>
+                <div class="hero-contact">
+                    <a href="tel:+919997422661" class="contact-item">
+                        <span>📞</span>
+                        <span>+91 9997422661</span>
+                    </a>
+                    <a href="mailto:girgillajagmeet@gmail.com" class="contact-item">
+                        <span>✉️</span>
+                        <span>girgillajagmeet@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/jagmeet-singh-8ba880135" target="_blank" class="contact-item">
+                        <span>💼</span>
+                        <span>LinkedIn</span>
+                    </a>
+                    <span class="contact-item">
+                        <span>📍</span>
+                        <span>Noida, India</span>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section id="profile" class="section fade-in">
+            <h2 class="section-title">Profile</h2>
+            <div class="profile-content">
+                Experienced and strategic Senior Business Analyst with 8+ years of expertise in US Healthcare, ERP, and CRM domains. Adept in Agile delivery, stakeholder engagement, and full lifecycle project management. Proven track record in delivering scalable solutions, process automation, and client satisfaction across diverse enterprise environments.
+            </div>
+        </section>
+
+        <section class="section fade-in">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="competencies-grid">
+                <div class="competency-item">
+                    <h3>Business Requirement Analysis & Agile Delivery</h3>
+                    <p>Expert in analyzing complex business requirements and delivering solutions using Agile methodologies</p>
+                </div>
+                <div class="competency-item">
+                    <h3>HIPAA-Compliant Healthcare Systems</h3>
+                    <p>Specialized in healthcare systems ensuring full HIPAA compliance and regulatory adherence</p>
+                </div>
+                <div class="competency-item">
+                    <h3>ERP & CRM Implementation</h3>
+                    <p>Extensive experience in Salesforce, ERPNext, and custom ERP/CRM solutions</p>
+                </div>
+                <div class="competency-item">
+                    <h3>Stakeholder & Client Management</h3>
+                    <p>Proven track record in managing complex stakeholder relationships and client expectations</p>
+                </div>
+                <div class="competency-item">
+                    <h3>UAT, Functional Testing & Documentation</h3>
+                    <p>Expert in creating comprehensive BRD/FSD documentation and managing UAT processes</p>
+                </div>
+                <div class="competency-item">
+                    <h3>Technical Tools Proficiency</h3>
+                    <p>JIRA, Confluence, SQL, Figma, Draw.io, and various business analysis tools</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section fade-in">
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="experience-item" onclick="showModal('Deepmindz Innovation')">
+                <div class="experience-header">
+                    <div class="experience-title">Senior Business Analyst</div>
+                    <div class="experience-company">Deepmindz Innovation</div>
+                    <div class="experience-duration">Oct 2024 - Present</div>
+                </div>
+            </div>
+
+            <div class="experience-item" onclick="showModal('WalkingTree Technologies')">
+                <div class="experience-header">
+                    <div class="experience-title">Senior Business Analyst</div>
+                    <div class="experience-company">WalkingTree Technologies</div>
+                    <div class="experience-duration">Dec 2023 – Oct 2024</div>
+                </div>
+            </div>
+
+            <div class="experience-item" onclick="showModal('Staqo World Pvt. Ltd.')">
+                <div class="experience-header">
+                    <div class="experience-title">Business Analyst</div>
+                    <div class="experience-company">Staqo World Pvt. Ltd.</div>
+                    <div class="experience-duration">Jan 2022 - Dec 2023</div>
+                </div>
+            </div>
+
+            <div class="experience-item" onclick="showModal('Manras Technologies Pvt. Ltd.')">
+                <div class="experience-header">
+                    <div class="experience-title">Associate Consultant</div>
+                    <div class="experience-company">Manras Technologies Pvt. Ltd.</div>
+                    <div class="experience-duration">Aug 2022 - Dec 2022</div>
+                </div>
+            </div>
+
+            <div class="experience-item" onclick="showModal('GFN D\'selva Infotech Pvt. Ltd.')">
+                <div class="experience-header">
+                    <div class="experience-title">Implementation Engineer / Business Analyst</div>
+                    <div class="experience-company">GFN D'selva Infotech Pvt. Ltd.</div>
+                    <div class="experience-duration">Oct 2016 - Mar 2021</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section fade-in">
+            <h2 class="section-title">Projects Portfolio</h2>
+            <div class="projects-grid">
+                <div class="project-card" onclick="showModal('McKesson - US Healthcare Ordering Portal')">
+                    <div class="project-title">McKesson – US Healthcare Ordering Portal</div>
+                    <div class="project-description">
+                        Led requirement discovery, HIPAA compliance validation, UAT coordination, and product demo sessions. Enabled a 70% reduction in manual order processing through workflow automation.
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Healthcare</span>
+                        <span class="project-tag">HIPAA</span>
+                        <span class="project-tag">UAT</span>
+                    </div>
+                </div>
+                <div class="project-card" onclick="showModal('Manufacturing ERP System')">
+                    <div class="project-title">Manufacturing ERP System</div>
+                    <div class="project-description">
+                        Aligned ERP functionalities with production planning, BOM management, and inventory controls. Achieved 30% improvement in supply chain visibility and production scheduling.
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">ERP</span>
+                        <span class="project-tag">Manufacturing</span>
+                        <span class="project-tag">Inventory</span>
+                    </div>
+                </div>
+                <div class="project-card" onclick="showModal('CRM - Marketing, Insurance, Salesforce')">
+                    <div class="project-title">CRM - Marketing, Insurance, Salesforce</div>
+                    <div class="project-description">
+                        Streamlined lead lifecycle and automated campaign tracking, improving conversion metrics by 40%.
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">CRM</span>
+                        <span class="project-tag">Salesforce</span>
+                        <span class="project-tag">Marketing Automation</span>
+                    </div>
+                </div>
+                <div class="project-card" onclick="showModal('Fleet Management System')">
+                    <div class="project-title">Fleet Management System</div>
+                    <div class="project-description">
+                        Deployed asset tracking and maintenance scheduling tools, reducing vehicle downtime by 25%. Also added a detailed project description here.
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Fleet Management</span>
+                        <span class="project-tag">Asset Tracking</span>
+                        <span class="project-tag">Maintenance</span>
+                    </div>
+                </div>
+                <div class="project-card" onclick="showModal('Natural Energies Platform')">
+                    <div class="project-title">Natural Energies Platform</div>
+                    <div class="project-description">
+                        Designed analytics dashboards for renewable asset performance, cutting compliance reporting time by 50%.
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Renewable Energy</span>
+                        <span class="project-tag">Analytics</span>
+                        <span class="project-tag">Dashboards</span>
+                    </div>
+                </div>
+                <div class="project-card" onclick="showModal('Publication ERP')">
+                    <div class="project-title">Publication ERP</div>
+                    <div class="project-description">
+                        Managed end-to-end publication workflows, from manuscript submission to distribution, improving efficiency and reducing time-to-market. Implemented a scalable ERP system to handle large volumes of publications, including books and notebooks.
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">ERP</span>
+                        <span class="project-tag">Publication</span>
+                        <span class="project-tag">Workflow Automation</span>
+                    </div>
+                </div>
+                <div class="project-card" onclick="showModal('Inventory Management')">
+                    <div class="project-title">Inventory Management</div>
+                    <div class="project-description">
+                        Implemented a real-time inventory tracking system, optimizing stock levels and reducing carrying costs. Integrated with various supply chain components to provide end-to-end visibility.
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Inventory</span>
+                        <span class="project-tag">Supply Chain</span>
+                    </div>
+                </div>
+                <div class="project-card" onclick="showModal('HR Payroll')">
+                    <div class="project-title">HR Payroll</div>
+                    <div class="project-description">
+                        Developed a comprehensive HR and payroll system, automating salary calculations, tax compliance, and employee data management. Enhanced accuracy and efficiency of payroll processing.
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">HR</span>
+                        <span class="project-tag">Payroll</span>
+                        <span class="project-tag">Compliance</span>
+                    </div>
+                </div>
+                <div class="project-card" onclick="showModal('AI Integrated Banking Application Form')">
+                    <div class="project-title">AI Integrated Banking Application Form</div>
+                    <div class="project-description">
+                        Designed and implemented an AI-powered form to streamline banking application processes, enhancing user experience and data accuracy.
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">AI</span>
+                        <span class="project-tag">Banking</span>
+                        <span class="project-tag">User Experience</span>
+                    </div>
+                </div>
+                <div class="project-card" onclick="showModal('Talent Acquisition AI Tool')">
+                    <div class="project-title">Talent Acquisition AI Tool</div>
+                    <div class="project-description">
+                        Created an AI tool to automate resume screening and candidate matching, significantly reducing recruitment time and effort.
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">AI</span>
+                        <span class="project-tag">Recruitment</span>
+                        <span class="project-tag">HR Tech</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section fade-in">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">JIRA</div>
+                <div class="skill-item">Confluence</div>
+                <div class="skill-item">Excel</div>
+                <div class="skill-item">Word</div>
+                <div class="skill-item">Figma</div>
+                <div class="skill-item">Draw.io</div>
+                <div class="skill-item">Balsamiq</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">ERPNext</div>
+                <div class="skill-item">Salesforce</div>
+            </div>
+        </section>
+
+        <section id="achievements" class="section fade-in">
+            <h2 class="section-title">Achievements & Languages</h2>
+            <div class="edu-cert-grid">
+                <div class="edu-cert-section">
+                    <div class="edu-cert-title">Languages</div>
+                    <div class="edu-cert-item">
+                        <div class="edu-cert-degree">English</div>
+                        <div class="edu-cert-institution">Fluent</div>
+                    </div>
+                    <div class="edu-cert-item">
+                        <div class="edu-cert-degree">Hindi</div>
+                        <div class="edu-cert-institution">Native</div>
+                    </div>
+                    <div class="edu-cert-item">
+                        <div class="edu-cert-degree">Punjabi</div>
+                        <div class="edu-cert-institution">Fluent</div>
+                    </div>
+                </div>
+                <div class="edu-cert-section">
+                    <div class="edu-cert-title">Methodologies & Domains</div>
+                    <div class="edu-cert-item">
+                        <div class="edu-cert-degree">Methodologies</div>
+                        <div class="edu-cert-institution">Agile Scrum, Waterfall (limited)</div>
+                    </div>
+                    <div class="edu-cert-item">
+                        <div class="edu-cert-degree">Domains</div>
+                        <div class="edu-cert-institution">US Healthcare (HIPAA), ERP (Manufacturing, Inventory, HR), CRM (Salesforce, Marketing Automation), Fleet Management, Healthcare retrospective audit (HRA), book and notebook Publication ERP, Diet plan system, ecommerce(B2B, B2C), Natural energies, Insurance</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Jagmeet Singh. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#terms-of-use" onclick="showModal('Terms of Use')">Terms of Use</a> |
+                <a href="#privacy-policy" onclick="showModal('Privacy Policy')">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 class="modal-title" id="modal-title"></h2>
+            <div class="modal-content-inner" id="modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+            const particlesContainer = document.querySelector('.bg-particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particlesContainer.appendChild(particle);
+            }
+        });
+
+        function showModal(item) {
+            const modal = document.getElementById('infoModal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+            
+            modalTitle.textContent = item;
+            modalContent.innerHTML = '';
+            
+            let content = '';
+
+            // Content for Professional Experience
+            const experienceData = {
+                'Deepmindz Innovation': `
+                    <div class="modal-info-item">
+                        <h3>Senior Business Analyst</h3>
+                        <p><strong>Oct 2024 - Present</strong></p>
+                        <ul>
+                            <li>Lead the complete business analysis lifecycle for a large-scale US Healthcare Ordering Portal (HIPAA compliant), streamlining ordering processes by 70%.</li>
+                            <li>Conduct daily Agile ceremonies including sprint planning, retrospectives, and backlog grooming.</li>
+                            <li>Authored detailed user stories, epics, workflows, and acceptance criteria within JIRA, improving traceability and sprint predictability.</li>
+                            <li>Managed client workshops, demos, and sprint reviews, aligning product delivery with evolving business needs.</li>
+                            <li>Created comprehensive documentation on Confluence to drive stakeholder transparency and team alignment.</li>
+                            <li>Mentored BA interns and junior analysts, fostering skill development and standardizing delivery protocols.</li>
+                        </ul>
+                    </div>
+                `,
+                'WalkingTree Technologies': `
+                    <div class="modal-info-item">
+                        <h3>Senior Business Analyst</h3>
+                        <p><strong>Dec 2023 - Oct 2024</strong></p>
+                        <ul>
+                            <li>Oversaw projects such as Healthcare Retrospective Audit (HRA), Engazewell, and internal IT Inventory systems.</li>
+                            <li>Interfaced with stakeholders and cross-functional Dev/QA teams to convert business needs into product-ready technical deliverables.</li>
+                            <li>Led end-to-end Agile project execution, reducing misalignment-related delays by 30%.</li>
+                            <li>Enhanced Agile maturity by improving sprint retrospectives, backlog clarity, and continuous stakeholder feedback loops.</li>
+                        </ul>
+                    </div>
+                `,
+                'Staqo World Pvt. Ltd.': `
+                    <div class="modal-info-item">
+                        <h3>Business Analyst</h3>
+                        <p><strong>Jan 2022 - Dec 2023</strong></p>
+                        <ul>
+                            <li>Led analysis for Natural Energies and Fleet Management solutions, enabling sustainable business decision-making.</li>
+                            <li>Conducted user workshops to define key business processes and documented BRD, FSD, and user flows.</li>
+                            <li>Drove user adoption through continuous stakeholder feedback sessions and agile delivery cycles.</li>
+                        </ul>
+                    </div>
+                `,
+                'Manras Technologies Pvt. Ltd.': `
+                    <div class="modal-info-item">
+                        <h3>Associate Consultant</h3>
+                        <p><strong>Aug 2022 - Dec 2022</strong></p>
+                        <ul>
+                            <li>Consulted Salesforce clients on CRM workflows, automating lead conversion and campaign performance tracking.</li>
+                            <li>Implemented Salesforce CRM solutions with clear mapping to client business logic, boosting user productivity by 30%.</li>
+                            <li>Delivered actionable insights through customized reports and dashboards for real-time decision-making.</li>
+                        </ul>
+                    </div>
+                `,
+                'GFN D\'selva Infotech Pvt. Ltd.': `
+                    <div class="modal-info-item">
+                        <h3>Implementation Engineer / Business Analyst</h3>
+                        <p><strong>Oct 2016 - Mar 2021</strong></p>
+                        <ul>
+                            <li>Spearheaded ERP implementation across Finance, HR, Sales, and Inventory departments.</li>
+                            <li>Designed and deployed mobile apps and dashboards to simplify field operations and reporting.</li>
+                            <li>Managed client onboarding, training, and post-go-live support, leading to strong client retention and satisfaction.</li>
+                        </ul>
+                    </div>
+                `,
+            };
+
+            // Content for Projects
+            const projectData = {
+                'McKesson - US Healthcare Ordering Portal': `
+                    <div class="modal-info-item">
+                        <p>Led requirement discovery, HIPAA compliance validation, UAT coordination, and product demo sessions. Enabled a 70% reduction in manual order processing through workflow automation.</p>
+                        <p><strong>Tags:</strong> Healthcare, HIPAA, UAT</p>
+                    </div>
+                `,
+                'Manufacturing ERP System': `
+                    <div class="modal-info-item">
+                        <p>Aligned ERP functionalities with production planning, BOM management, and inventory controls. Achieved 30% improvement in supply chain visibility and production scheduling.</p>
+                        <p><strong>Tags:</strong> ERP, Manufacturing, Inventory</p>
+                    </div>
+                `,
+                'CRM - Marketing, Insurance, Salesforce': `
+                    <div class="modal-info-item">
+                        <p>Streamlined lead lifecycle and automated campaign tracking, improving conversion metrics by 40%. Added a detailed project description here.</p>
+                        <p><strong>Tags:</strong> CRM, Salesforce, Marketing Automation, Insurance</p>
+                    </div>
+                `,
+                'Fleet Management System': `
+                    <div class="modal-info-item">
+                        <p>Deployed asset tracking and maintenance scheduling tools, reducing vehicle downtime by 25%. Also added a detailed project description here.</p>
+                        <p><strong>Tags:</strong> Fleet Management, Asset Tracking, Maintenance</p>
+                    </div>
+                `,
+                'Natural Energies Platform': `
+                    <div class="modal-info-item">
+                        <p>Designed analytics dashboards for renewable asset performance, cutting compliance reporting time by 50%. Added a detailed project description here.</p>
+                        <p><strong>Tags:</strong> Renewable Energy, Analytics, Dashboards</p>
+                    </div>
+                `,
+                'Publication ERP': `
+                    <div class="modal-info-item">
+                        <p>Managed end-to-end publication workflows, from manuscript submission to distribution, improving efficiency and reducing time-to-market. Implemented a scalable ERP system to handle large volumes of publications, including books and notebooks.</p>
+                        <p><strong>Tags:</strong> ERP, Publication, Workflow Automation</p>
+                    </div>
+                `,
+                'Inventory Management': `
+                    <div class="modal-info-item">
+                        <p>Implemented a real-time inventory tracking system, optimizing stock levels and reducing carrying costs. Integrated with various supply chain components to provide end-to-end visibility.</p>
+                        <p><strong>Tags:</strong> Inventory, Supply Chain, Logistics</p>
+                    </div>
+                `,
+                'HR Payroll': `
+                    <div class="modal-info-item">
+                        <p>Developed a comprehensive HR and payroll system, automating salary calculations, tax compliance, and employee data management. Enhanced accuracy and efficiency of payroll processing.</p>
+                        <p><strong>Tags:</strong> HR, Payroll, Compliance</p>
+                    </div>
+                `,
+                'AI Integrated Banking Application Form': `
+                    <div class="modal-info-item">
+                        <p>Created an AI-powered banking application form that uses machine learning to pre-populate fields, verify documents, and detect fraud, significantly reducing manual effort and processing time.</p>
+                        <p><strong>Tags:</strong> AI, Banking, Fintech</p>
+                    </div>
+                `,
+                'Talent Acquisition AI Tool': `
+                    <div class="modal-info-item">
+                        <p>Developed a custom AI tool to automate resume screening and candidate matching based on job requirements and skill sets. This tool significantly reduced recruitment time and improved the quality of candidates.</p>
+                        <p><strong>Tags:</strong> AI, Recruitment, HR Tech</p>
+                    </div>
+                `,
+                'Terms of Use': `
+                    <div class="modal-info-item">
+                        <h3>Terms of Use for Jagmeet Singh's Portfolio</h3>
+                        <p>Welcome to my professional portfolio website. By accessing this page, you agree to comply with and be bound by the following terms and conditions of use. Please review these terms carefully.</p>
+                        <h4>1. Use of Content</h4>
+                        <p>All content on this site, including text, graphics, and code, is for informational purposes only. You may not reproduce, distribute, modify, or transmit any part of this site without prior written permission. The information is provided "as is" without warranty of any kind.</p>
+                        <h4>2. Accuracy of Information</h4>
+                        <p>The resume and project information provided on this site are intended to be accurate and up-to-date. However, I make no guarantees regarding the completeness or accuracy of the information. All details are subject to change.</p>
+                        <h4>3. No Professional Advice</h4>
+                        <p>The content on this site is not intended to be a substitute for professional advice. Any reliance you place on such information is therefore strictly at your own risk.</p>
+                        <h4>4. Limitation of Liability</h4>
+                        <p>I shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of this website. Your use of this site is at your own risk.</p>
+                        <h4>5. Changes to Terms</h4>
+                        <p>I reserve the right to modify these terms at any time. Your continued use of the site after any such changes constitutes your acceptance of the new terms.</p>
+                    </div>
+                `,
+                'Privacy Policy': `
+                    <div class="modal-info-item">
+                        <h3>Privacy Policy for Jagmeet Singh's Portfolio</h3>
+                        <p>Your privacy is important. This policy outlines how I handle any personal information you might provide while visiting this website.</p>
+                        <h4>1. Information I Collect</h4>
+                        <p>This website does not automatically collect any personal data from its visitors. I do not use cookies or tracking technologies. Any information you provide, such as through email, is voluntarily given and will be used solely for the purpose of communicating with you regarding professional inquiries.</p>
+                        <h4>2. How I Use Your Information</h4>
+                        <p>Any personal information you send to me will be used exclusively to respond to your queries or professional requests. I will not share, sell, or rent your information to third parties.</p>
+                        <h4>3. Data Security</h4>
+                        <p>I take reasonable measures to protect any information you provide. However, please be aware that no method of transmission over the internet or method of electronic storage is 100% secure.</p>
+                        <h4>4. External Links</h4>
+                        <p>This website contains links to external sites, such as my LinkedIn profile. I am not responsible for the privacy practices or the content of these external sites.</p>
+                        <h4>5. Changes to this Policy</h4>
+                        <p>I may update this Privacy Policy from time to time. I will notify you of any changes by posting the new policy on this page.</p>
+                    </div>
+                `
+            };
+
+            if (experienceData[item]) {
+                content = experienceData[item];
+            } else if (projectData[item]) {
+                content = projectData[item];
+            } else if (item === 'Terms of Use' || item === 'Privacy Policy') {
+                content = projectData[item];
+            }
+            
+            modalContent.innerHTML = content;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
