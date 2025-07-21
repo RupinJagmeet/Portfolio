@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 100%);
             color: #e0e6ed;
             line-height: 1.6;
@@ -75,6 +75,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            cursor: pointer;
         }
 
         .nav-menu {
@@ -90,6 +91,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .nav-item::before {
@@ -152,17 +154,6 @@
             z-index: 2;
         }
 
-        .hero-name {
-            font-size: 4rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #00d4ff, #7b68ee, #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            animation: slideInUp 1s ease-out;
-        }
-
         .hero-title {
             font-size: 1.8rem;
             color: #a0a9b8;
@@ -220,7 +211,7 @@
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.6s ease;
         }
 
         .section::before {
@@ -244,7 +235,9 @@
             color: #00d4ff;
             margin-bottom: 2rem;
             position: relative;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .section-title::after {
@@ -257,6 +250,26 @@
             background: linear-gradient(90deg, #00d4ff, #7b68ee);
             border-radius: 2px;
         }
+        
+        .section-icon {
+            font-size: 2.5rem;
+        }
+        
+        .list-item-icon {
+            margin-right: 10px;
+        }
+        
+        .list-item-icon.blue {
+            color: #00d4ff;
+        }
+        
+        .list-item-icon.purple {
+            color: #7b68ee;
+        }
+        
+        .list-item-icon.red {
+            color: #ff6b6b;
+        }
 
         /* Profile Section */
         .profile-content {
@@ -267,6 +280,29 @@
         }
 
         /* Core Competencies */
+        .competencies-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .competencies-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .competencies-chart {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+        }
+
         .competencies-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -557,7 +593,7 @@
             transform: translateY(-5px);
             color: #00d4ff;
         }
-
+        
         /* Modal */
         .modal {
             display: none;
@@ -658,28 +694,32 @@
         
         /* Responsive Design */
 		body.modal-open {
-    overflow: hidden;
-}
-.modal-content-inner {
-    max-height: 70vh;
-    overflow-y: auto;
-    padding-right: 15px;
-}
-.modal-content-inner::-webkit-scrollbar {
-    width: 10px;
-}
-.modal-content-inner::-webkit-scrollbar-track {
-    background: #1a1a2e;
-    border-radius: 10px;
-}
-.modal-content-inner::-webkit-scrollbar-thumb {
-    background: #00d4ff;
-    border-radius: 10px;
-    border: 2px solid #1a1a2e;
-}
+            overflow: hidden;
+        }
+
+        .modal-content-inner {
+            max-height: 70vh;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+
+        .modal-content-inner::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .modal-content-inner::-webkit-scrollbar-track {
+            background: #1a1a2e;
+            border-radius: 10px;
+        }
+
+        .modal-content-inner::-webkit-scrollbar-thumb {
+            background: #00d4ff;
+            border-radius: 10px;
+            border: 2px solid #1a1a2e;
+        }
 
         @media (max-width: 768px) {
-            .hero-name {
+            .hero-name-container {
                 font-size: 2.5rem;
             }
             
@@ -737,29 +777,33 @@
         .footer-links a:hover {
             color: #7b68ee;
         }
+        
+        .hidden {
+            display: none;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="bg-particles"></div>
 
     <div class="nav-container">
         <div class="nav-content">
-            <div class="nav-logo">JAGMEET SINGH</div>
+            <div class="nav-logo" onclick="showAllSections()">JAGMEET SINGH</div>
             <nav class="nav-menu">
-                <a href="#hero" class="nav-item">Home</a>
-                <a href="#profile" class="nav-item">Profile</a>
-                <a href="#experience" class="nav-item">Experience</a>
-                <a href="#projects" class="nav-item">Projects</a>
-                <a href="#achievements" class="nav-item">Achievements</a>
-                <a href="#education" class="nav-item">Education</a>
+                <a class="nav-item" data-section="all" onclick="showAllSections()">Home</a>
+                <a class="nav-item" data-section="profile">Profile</a>
+                <a class="nav-item" data-section="experience">Experience</a>
+                <a class="nav-item" data-section="projects">Projects</a>
+                <a class="nav-item" data-section="achievements">Achievements</a>
+                <a class="nav-item" data-section="education">Education</a>
             </nav>
         </div>
     </div>
 
     <div class="container">
-        <section id="hero" class="hero">
+        <section id="hero" class="hero content-section">
             <div class="hero-content">
-                <h1 class="hero-name">JAGMEET SINGH</h1>
                 <p class="hero-title">Senior Business Analyst | Healthcare, ERP & CRM Specialist</p>
                 <div class="hero-contact">
                     <a href="tel:+919997422661" class="contact-item">
@@ -782,45 +826,46 @@
             </div>
         </section>
 
-        <section id="profile" class="section fade-in">
-            <h2 class="section-title">Profile</h2>
+        <section id="profile" class="section fade-in content-section">
+            <h2 class="section-title"><span>👤</span>Profile</h2>
             <div class="profile-content">
                 Experienced and strategic Senior Business Analyst with 8+ years of expertise in US Healthcare, ERP, and CRM domains. Adept in Agile delivery, stakeholder engagement, and full lifecycle project management. Proven track record in delivering scalable solutions, process automation, and client satisfaction across diverse enterprise environments.
             </div>
         </section>
 
-        <section class="section fade-in">
-            <h2 class="section-title">Core Competencies</h2>
-            <div class="competencies-grid">
-                <div class="competency-item">
-                    <h3>Business Requirement Analysis & Agile Delivery</h3>
-                    <p>Expert in analyzing complex business requirements and delivering solutions using Agile methodologies</p>
+        <section class="section fade-in content-section" id="competencies">
+            <h2 class="section-title"><span>💡</span>Core Competencies</h2>
+            <div class="competencies-content">
+                <div class="competencies-text">
+                    <div class="competency-item" onclick="showModal('Business Requirement Analysis & Agile Delivery')">
+                        <h3><span class="list-item-icon blue">📋</span>Business Requirement Analysis & Agile Delivery</h3>
+                        <p>Expert in analyzing complex business requirements and delivering solutions using Agile methodologies</p>
+                    </div>
+                    <div class="competency-item" onclick="showModal('HIPAA-Compliant Healthcare Systems')">
+                        <h3><span class="list-item-icon purple">🩺</span>HIPAA-Compliant Healthcare Systems</h3>
+                        <p>Specialized in healthcare systems ensuring full HIPAA compliance and regulatory adherence</p>
+                    </div>
+                    <div class="competency-item" onclick="showModal('ERP & CRM Implementation')">
+                        <h3><span class="list-item-icon red">🚀</span>ERP & CRM Implementation</h3>
+                        <p>Extensive experience in Salesforce, ERPNext, and custom ERP/CRM solutions</p>
+                    </div>
+                    <div class="competency-item" onclick="showModal('Stakeholder & Client Management')">
+                        <h3><span class="list-item-icon blue">🤝</span>Stakeholder & Client Management</h3>
+                        <p>Proven track record in managing complex stakeholder relationships and client expectations</p>
+                    </div>
+                    <div class="competency-item" onclick="showModal('UAT, Functional Testing & Documentation')">
+                        <h3><span class="list-item-icon purple">📝</span>UAT, Functional Testing & Documentation</h3>
+                        <p>Expert in creating comprehensive BRD/FSD documentation and managing UAT processes</p>
+                    </div>
                 </div>
-                <div class="competency-item">
-                    <h3>HIPAA-Compliant Healthcare Systems</h3>
-                    <p>Specialized in healthcare systems ensuring full HIPAA compliance and regulatory adherence</p>
-                </div>
-                <div class="competency-item">
-                    <h3>ERP & CRM Implementation</h3>
-                    <p>Extensive experience in Salesforce, ERPNext, and custom ERP/CRM solutions</p>
-                </div>
-                <div class="competency-item">
-                    <h3>Stakeholder & Client Management</h3>
-                    <p>Proven track record in managing complex stakeholder relationships and client expectations</p>
-                </div>
-                <div class="competency-item">
-                    <h3>UAT, Functional Testing & Documentation</h3>
-                    <p>Expert in creating comprehensive BRD/FSD documentation and managing UAT processes</p>
-                </div>
-                <div class="competency-item">
-                    <h3>Technical Tools Proficiency</h3>
-                    <p>JIRA, Confluence, SQL, Figma, Draw.io, and various business analysis tools</p>
+                <div class="competencies-chart">
+                    <canvas id="expertiseRadarChart"></canvas>
                 </div>
             </div>
         </section>
 
-        <section id="experience" class="section fade-in">
-            <h2 class="section-title">Professional Experience</h2>
+        <section id="experience" class="section fade-in content-section">
+            <h2 class="section-title"><span>💼</span>Professional Experience</h2>
             
             <div class="experience-item" onclick="showModal('Deepmindz Innovation')">
                 <div class="experience-header">
@@ -863,8 +908,8 @@
             </div>
         </section>
 
-        <section id="projects" class="section fade-in">
-            <h2 class="section-title">Projects Portfolio</h2>
+        <section id="projects" class="section fade-in content-section">
+            <h2 class="section-title"><span>🚀</span>Projects Portfolio</h2>
             <div class="projects-grid">
                 <div class="project-card" onclick="showModal('McKesson - US Healthcare Ordering Portal')">
                     <div class="project-title">McKesson – US Healthcare Ordering Portal</div>
@@ -891,7 +936,7 @@
                 <div class="project-card" onclick="showModal('CRM - Marketing, Insurance, Salesforce')">
                     <div class="project-title">CRM - Marketing, Insurance, Salesforce</div>
                     <div class="project-description">
-                        Streamlined lead lifecycle and automated campaign tracking, improving conversion metrics by 40%.
+                        Streamlined lead lifecycle and automated campaign tracking, improving conversion metrics by 40%. Added a detailed project description here.
                     </div>
                     <div class="project-tags">
                         <span class="project-tag">CRM</span>
@@ -913,7 +958,7 @@
                 <div class="project-card" onclick="showModal('Natural Energies Platform')">
                     <div class="project-title">Natural Energies Platform</div>
                     <div class="project-description">
-                        Designed analytics dashboards for renewable asset performance, cutting compliance reporting time by 50%.
+                        Designed analytics dashboards for renewable asset performance, cutting compliance reporting time by 50%. Added a detailed project description here.
                     </div>
                     <div class="project-tags">
                         <span class="project-tag">Renewable Energy</span>
@@ -978,27 +1023,60 @@
             </div>
         </section>
 
-        <section class="section fade-in">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item">JIRA</div>
-                <div class="skill-item">Confluence</div>
-                <div class="skill-item">Excel</div>
-                <div class="skill-item">Word</div>
-                <div class="skill-item">Figma</div>
-                <div class="skill-item">Draw.io</div>
-                <div class="skill-item">Balsamiq</div>
-                <div class="skill-item">SQL</div>
-                <div class="skill-item">ERPNext</div>
-                <div class="skill-item">Salesforce</div>
+        <section id="education" class="section fade-in content-section">
+            <h2 class="section-title"><span>🎓</span>Education</h2>
+            <div class="edu-cert-grid">
+                <div class="edu-cert-section">
+                    <div class="edu-cert-title"><span class="list-item-icon blue">📚</span>Education</div>
+                    <div class="edu-cert-item">
+                        <div class="edu-cert-degree">Master of Computer Applications (MCA)</div>
+                        <div class="edu-cert-institution">Jaipur National University</div>
+                        <div class="edu-cert-year">2016-2018</div>
+                    </div>
+                    <div class="edu-cert-item">
+                        <div class="edu-cert-degree">Bachelor of Computer Applications (BCA)</div>
+                        <div class="edu-cert-institution">Dr. MPS Group of Institutions</div>
+                        <div class="edu-cert-year">2013-2016</div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="achievements" class="section fade-in">
-            <h2 class="section-title">Achievements & Languages</h2>
+        <section class="section fade-in content-section" id="skills">
+            <h2 class="section-title"><span>🛠️</span>Technical Skills</h2>
             <div class="edu-cert-grid">
                 <div class="edu-cert-section">
-                    <div class="edu-cert-title">Languages</div>
+                    <div class="edu-cert-title"><span class="list-item-icon purple">🧠</span>Key Skills</div>
+                    <div class="skill-item" onclick="showModal('Requirement Elicitation & Analysis')">Requirement Elicitation & Analysis</div>
+                    <div class="skill-item" onclick="showModal('Stakeholder Management')">Stakeholder Management</div>
+                    <div class="skill-item" onclick="showModal('Process Modeling (BPMN)')">Process Modeling (BPMN)</div>
+                    <div class="skill-item" onclick="showModal('Data Analysis & Reporting')">Data Analysis & Reporting</div>
+                    <div class="skill-item" onclick="showModal('Agile Methodologies')">Agile Methodologies</div>
+                    <div class="skill-item" onclick="showModal('User Stories & Acceptance Criteria')">User Stories & Acceptance Criteria</div>
+                </div>
+                <div class="edu-cert-section">
+                    <div class="edu-cert-title"><span class="list-item-icon blue">⚙️</span>Technical Tools</div>
+                    <div class="skills-grid">
+                        <div class="skill-item" onclick="showModal('JIRA')">JIRA</div>
+                        <div class="skill-item" onclick="showModal('Confluence')">Confluence</div>
+                        <div class="skill-item" onclick="showModal('Excel')">Excel</div>
+                        <div class="skill-item" onclick="showModal('Word')">Word</div>
+                        <div class="skill-item" onclick="showModal('Figma')">Figma</div>
+                        <div class="skill-item" onclick="showModal('Draw.io')">Draw.io</div>
+                        <div class="skill-item" onclick="showModal('Balsamiq')">Balsamiq</div>
+                        <div class="skill-item" onclick="showModal('SQL')">SQL</div>
+                        <div class="skill-item" onclick="showModal('ERPNext')">ERPNext</div>
+                        <div class="skill-item" onclick="showModal('Salesforce')">Salesforce</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="achievements" class="section fade-in content-section">
+            <h2 class="section-title"><span>🏆</span>Achievements & Languages</h2>
+            <div class="edu-cert-grid">
+                <div class="edu-cert-section">
+                    <div class="edu-cert-title"><span class="list-item-icon blue">🌐</span>Languages</div>
                     <div class="edu-cert-item">
                         <div class="edu-cert-degree">English</div>
                         <div class="edu-cert-institution">Fluent</div>
@@ -1013,7 +1091,7 @@
                     </div>
                 </div>
                 <div class="edu-cert-section">
-                    <div class="edu-cert-title">Methodologies & Domains</div>
+                    <div class="edu-cert-title"><span class="list-item-icon purple">🧠</span>Methodologies & Domains</div>
                     <div class="edu-cert-item">
                         <div class="edu-cert-degree">Methodologies</div>
                         <div class="edu-cert-institution">Agile Scrum, Waterfall (limited)</div>
@@ -1032,8 +1110,8 @@
         <div class="footer-content">
             <p>&copy; 2025 Jagmeet Singh. All rights reserved.</p>
             <div class="footer-links">
-                <a href="#terms-of-use" onclick="showModal('Terms of Use')">Terms of Use</a> |
-                <a href="#privacy-policy" onclick="showModal('Privacy Policy')">Privacy Policy</a>
+                <a href="#" onclick="showModal('Terms of Use')">Terms of Use</a> |
+                <a href="#" onclick="showModal('Privacy Policy')">Privacy Policy</a>
             </div>
         </div>
     </footer>
@@ -1069,6 +1147,48 @@
                 particle.style.animationDelay = `${Math.random() * 5}s`;
                 particlesContainer.appendChild(particle);
             }
+            
+            // Initialize charts after DOM is loaded
+            createExpertiseRadarChart();
+        });
+
+        function showAllSections() {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('hidden');
+                section.classList.add('fade-in');
+            });
+        }
+        
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.remove('hidden');
+                    section.classList.add('fade-in');
+                } else {
+                    section.classList.add('hidden');
+                    section.classList.remove('fade-in');
+                }
+            });
+        }
+        
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const sectionId = event.target.getAttribute('data-section');
+                if (sectionId === 'all') {
+                    showAllSections();
+                } else {
+                    showSection(sectionId);
+                }
+            });
+        });
+        
+        document.querySelector('.nav-logo').addEventListener('click', (event) => {
+            event.preventDefault();
+            showAllSections();
         });
 
         function showModal(item) {
@@ -1080,7 +1200,60 @@
             modalContent.innerHTML = '';
             
             let content = '';
-
+            
+            const competenciesData = {
+                'Business Requirement Analysis & Agile Delivery': `
+                    <div class="modal-info-item">
+                        <h3>Core Competency Details</h3>
+                        <ul>
+                            <li><span class="list-item-icon blue">✅</span>**Requirement Elicitation & Analysis:** Expert in gathering, documenting, and managing business and functional requirements through stakeholder interviews, workshops, and user stories.</li>
+                            <li><span class="list-item-icon blue">✅</span>**Agile Methodology:** Proficient in leading Agile Scrum ceremonies, including sprint planning, daily stand-ups, retrospectives, and backlog grooming.</li>
+                            <li><span class="list-item-icon blue">✅</span>**Process Modeling:** Skilled in creating process flow diagrams, wireframes, and prototypes using tools like Figma, Draw.io, and Balsamiq to visualize solutions.</li>
+                        </ul>
+                    </div>
+                `,
+                'HIPAA-Compliant Healthcare Systems': `
+                    <div class="modal-info-item">
+                        <h3>Core Competency Details</h3>
+                        <ul>
+                            <li><span class="list-item-icon purple">🩺</span>**Regulatory Compliance:** Specialized knowledge in developing and implementing healthcare solutions that are fully compliant with HIPAA regulations.</li>
+                            <li><span class="list-item-icon purple">🩺</span>**Healthcare Workflow Optimization:** Proven experience in optimizing clinical and administrative workflows for healthcare systems, including patient management and medical data handling.</li>
+                            <li><span class="list-item-icon purple">🩺</span>**Data Integrity & Security:** Focused on ensuring the security and integrity of Protected Health Information (PHI) within healthcare applications.</li>
+                        </ul>
+                    </div>
+                `,
+                'ERP & CRM Implementation': `
+                    <div class="modal-info-item">
+                        <h3>Core Competency Details</h3>
+                        <ul>
+                            <li><span class="list-item-icon red">🚀</span>**Salesforce & ERPNext Expertise:** Hands-on experience in configuring, customizing, and deploying Salesforce and ERPNext solutions to meet specific business needs.</li>
+                            <li><span class="list-item-icon red">🚀</span>**System Integration:** Skilled in integrating ERP and CRM platforms with other business applications to create a unified and efficient ecosystem.</li>
+                            <li><span class="list-item-icon red">🚀</span>**Customization & Workflow Automation:** Experienced in designing and implementing custom workflows, automation rules, and reporting dashboards to improve operational efficiency.</li>
+                        </ul>
+                    </div>
+                `,
+                'Stakeholder & Client Management': `
+                    <div class="modal-info-item">
+                        <h3>Core Competency Details</h3>
+                        <ul>
+                            <li><span class="list-item-icon blue">🤝</span>**Relationship Building:** Proven ability to build and maintain strong relationships with internal and external stakeholders, including clients, development teams, and C-level executives.</li>
+                            <li><span class="list-item-icon blue">🤝</span>**Communication & Negotiation:** Excellent communication and negotiation skills to effectively bridge the gap between technical teams and business stakeholders.</li>
+                            <li><span class="list-item-icon blue">🤝</span>**Expectation Management:** Adept at managing and aligning stakeholder expectations with project scope, timeline, and budget.</li>
+                        </ul>
+                    </div>
+                `,
+                'UAT, Functional Testing & Documentation': `
+                    <div class="modal-info-item">
+                        <h3>Core Competency Details</h3>
+                        <ul>
+                            <li><span class="list-item-icon purple">📝</span>**UAT Planning & Execution:** Experienced in planning, coordinating, and executing User Acceptance Testing (UAT) to ensure solutions meet business requirements.</li>
+                            <li><span class="list-item-icon purple">📝</span>**Test Case Management:** Skilled in creating detailed test cases, tracking defects, and ensuring issues are resolved prior to go-live.</li>
+                            <li><span class="list-item-icon purple">📝</span>**Comprehensive Documentation:** Proficient in creating and maintaining detailed business requirements documents (BRD), functional specification documents (FSD), and process documentation.</li>
+                        </ul>
+                    </div>
+                `,
+            };
+            
             // Content for Professional Experience
             const experienceData = {
                 'Deepmindz Innovation': `
@@ -1088,12 +1261,12 @@
                         <h3>Senior Business Analyst</h3>
                         <p><strong>Oct 2024 - Present</strong></p>
                         <ul>
-                            <li>Lead the complete business analysis lifecycle for a large-scale US Healthcare Ordering Portal (HIPAA compliant), streamlining ordering processes by 70%.</li>
-                            <li>Conduct daily Agile ceremonies including sprint planning, retrospectives, and backlog grooming.</li>
-                            <li>Authored detailed user stories, epics, workflows, and acceptance criteria within JIRA, improving traceability and sprint predictability.</li>
-                            <li>Managed client workshops, demos, and sprint reviews, aligning product delivery with evolving business needs.</li>
-                            <li>Created comprehensive documentation on Confluence to drive stakeholder transparency and team alignment.</li>
-                            <li>Mentored BA interns and junior analysts, fostering skill development and standardizing delivery protocols.</li>
+                            <li><span class="list-item-icon blue">✨</span>Lead the complete business analysis lifecycle for a large-scale US Healthcare Ordering Portal (HIPAA compliant), streamlining ordering processes by 70%.</li>
+                            <li><span class="list-item-icon purple">🗓️</span>Conduct daily Agile ceremonies including sprint planning, retrospectives, and backlog grooming.</li>
+                            <li><span class="list-item-icon red">✍️</span>Authored detailed user stories, epics, workflows, and acceptance criteria within JIRA, improving traceability and sprint predictability.</li>
+                            <li><span class="list-item-icon blue">🤝</span>Managed client workshops, demos, and sprint reviews, aligning product delivery with evolving business needs.</li>
+                            <li><span class="list-item-icon purple">📝</span>Created comprehensive documentation on Confluence to drive stakeholder transparency and team alignment.</li>
+                            <li><span class="list-item-icon red"> mentor</span>Mentored BA interns and junior analysts, fostering skill development and standardizing delivery protocols.</li>
                         </ul>
                     </div>
                 `,
@@ -1102,10 +1275,10 @@
                         <h3>Senior Business Analyst</h3>
                         <p><strong>Dec 2023 - Oct 2024</strong></p>
                         <ul>
-                            <li>Oversaw projects such as Healthcare Retrospective Audit (HRA), Engazewell, and internal IT Inventory systems.</li>
-                            <li>Interfaced with stakeholders and cross-functional Dev/QA teams to convert business needs into product-ready technical deliverables.</li>
-                            <li>Led end-to-end Agile project execution, reducing misalignment-related delays by 30%.</li>
-                            <li>Enhanced Agile maturity by improving sprint retrospectives, backlog clarity, and continuous stakeholder feedback loops.</li>
+                            <li><span class="list-item-icon blue">💡</span>Oversaw projects such as Healthcare Retrospective Audit (HRA), Engazewell, and internal IT Inventory systems.</li>
+                            <li><span class="list-item-icon purple">🗣️</span>Interfaced with stakeholders and cross-functional Dev/QA teams to convert business needs into product-ready technical deliverables.</li>
+                            <li><span class="list-item-icon red">📈</span>Led end-to-end Agile project execution, reducing misalignment-related delays by 30%.</li>
+                            <li><span class="list-item-icon blue">🎯</span>Enhanced Agile maturity by improving sprint retrospectives, backlog clarity, and continuous stakeholder feedback loops.</li>
                         </ul>
                     </div>
                 `,
@@ -1114,9 +1287,9 @@
                         <h3>Business Analyst</h3>
                         <p><strong>Jan 2022 - Dec 2023</strong></p>
                         <ul>
-                            <li>Led analysis for Natural Energies and Fleet Management solutions, enabling sustainable business decision-making.</li>
-                            <li>Conducted user workshops to define key business processes and documented BRD, FSD, and user flows.</li>
-                            <li>Drove user adoption through continuous stakeholder feedback sessions and agile delivery cycles.</li>
+                            <li><span class="list-item-icon red">🌿</span>Led analysis for Natural Energies and Fleet Management solutions, enabling sustainable business decision-making.</li>
+                            <li><span class="list-item-icon blue">✍️</span>Conducted user workshops to define key business processes and documented BRD, FSD, and user flows.</li>
+                            <li><span class="list-item-icon purple">🚀</span>Drove user adoption through continuous stakeholder feedback sessions and agile delivery cycles.</li>
                         </ul>
                     </div>
                 `,
@@ -1125,9 +1298,9 @@
                         <h3>Associate Consultant</h3>
                         <p><strong>Aug 2022 - Dec 2022</strong></p>
                         <ul>
-                            <li>Consulted Salesforce clients on CRM workflows, automating lead conversion and campaign performance tracking.</li>
-                            <li>Implemented Salesforce CRM solutions with clear mapping to client business logic, boosting user productivity by 30%.</li>
-                            <li>Delivered actionable insights through customized reports and dashboards for real-time decision-making.</li>
+                            <li><span class="list-item-icon blue">⚙️</span>Consulted Salesforce clients on CRM workflows, automating lead conversion and campaign performance tracking.</li>
+                            <li><span class="list-item-icon purple">📈</span>Implemented Salesforce CRM solutions with clear mapping to client business logic, boosting user productivity by 30%.</li>
+                            <li><span class="list-item-icon red">📊</span>Delivered actionable insights through customized reports and dashboards for real-time decision-making.</li>
                         </ul>
                     </div>
                 `,
@@ -1136,9 +1309,9 @@
                         <h3>Implementation Engineer / Business Analyst</h3>
                         <p><strong>Oct 2016 - Mar 2021</strong></p>
                         <ul>
-                            <li>Spearheaded ERP implementation across Finance, HR, Sales, and Inventory departments.</li>
-                            <li>Designed and deployed mobile apps and dashboards to simplify field operations and reporting.</li>
-                            <li>Managed client onboarding, training, and post-go-live support, leading to strong client retention and satisfaction.</li>
+                            <li><span class="list-item-icon blue">💡</span>Spearheaded ERP implementation across Finance, HR, Sales, and Inventory departments.</li>
+                            <li><span class="list-item-icon purple">📱</span>Designed and deployed mobile apps and dashboards to simplify field operations and reporting.</li>
+                            <li><span class="list-item-icon red">🤝</span>Managed client onboarding, training, and post-go-live support, leading to strong client retention and satisfaction.</li>
                         </ul>
                     </div>
                 `,
@@ -1148,61 +1321,122 @@
             const projectData = {
                 'McKesson - US Healthcare Ordering Portal': `
                     <div class="modal-info-item">
-                        <p>Led requirement discovery, HIPAA compliance validation, UAT coordination, and product demo sessions. Enabled a 70% reduction in manual order processing through workflow automation.</p>
+                        <h3>Project Details</h3>
+                        <p>This project involved designing and implementing a HIPAA-compliant online portal for a US healthcare client, McKesson. As a key business analyst, my role was to:</p>
+                        <ul>
+                            <li><span class="list-item-icon blue">🔍</span>Elicit and analyze complex business requirements for an online ordering system.</li>
+                            <li><span class="list-item-icon purple">🛡️</span>Ensure the solution's architecture and features were fully compliant with HIPAA regulations.</li>
+                            <li><span class="list-item-icon red">🧪</span>Plan and coordinate User Acceptance Testing (UAT), gathering feedback and ensuring all business requirements were met before go-live.</li>
+                            <li><span class="list-item-icon blue">📈</span>Demonstrate the product to key stakeholders, showcasing how the new system would automate order processing and reduce manual effort by 70%.</li>
+                        </ul>
                         <p><strong>Tags:</strong> Healthcare, HIPAA, UAT</p>
                     </div>
                 `,
                 'Manufacturing ERP System': `
                     <div class="modal-info-item">
-                        <p>Aligned ERP functionalities with production planning, BOM management, and inventory controls. Achieved 30% improvement in supply chain visibility and production scheduling.</p>
+                        <h3>Project Details</h3>
+                        <p>I led the business analysis for an ERP system tailored for the manufacturing industry. My responsibilities included:</p>
+                        <ul>
+                            <li><span class="list-item-icon red">🧩</span>Defining and documenting requirements for core ERP modules, including production planning, Bills of Materials (BOM) management, and inventory control.</li>
+                            <li><span class="list-item-icon blue">🔄</span>Analyzing existing manufacturing workflows to identify opportunities for automation and efficiency gains.</li>
+                            <li><span class="list-item-icon purple">📊</span>Collaborating with the development team to design and build a system that improved supply chain visibility and production scheduling by 30%.</li>
+                        </ul>
                         <p><strong>Tags:</strong> ERP, Manufacturing, Inventory</p>
                     </div>
                 `,
                 'CRM - Marketing, Insurance, Salesforce': `
                     <div class="modal-info-item">
-                        <p>Streamlined lead lifecycle and automated campaign tracking, improving conversion metrics by 40%. Added a detailed project description here.</p>
+                        <h3>Project Details</h3>
+                        <p>This project involved a large-scale CRM implementation and enhancement for clients in the marketing and insurance sectors, primarily using Salesforce. My contributions were:</p>
+                        <ul>
+                            <li><span class="list-item-icon blue">📈</span>Analyzing lead generation and conversion processes to design an automated lead lifecycle within Salesforce.</li>
+                            <li><span class="list-item-icon purple">🤖</span>Implementing marketing automation features to track campaign performance and segment customer data effectively.</li>
+                            <li><span class="list-item-icon red">📊</span>Developing custom reports and dashboards to provide real-time insights into sales performance and customer engagement, which improved conversion metrics by 40%.</li>
+                        </ul>
                         <p><strong>Tags:</strong> CRM, Salesforce, Marketing Automation, Insurance</p>
                     </div>
                 `,
                 'Fleet Management System': `
                     <div class="modal-info-item">
-                        <p>Deployed asset tracking and maintenance scheduling tools, reducing vehicle downtime by 25%. Also added a detailed project description here.</p>
+                        <h3>Project Details</h3>
+                        <p>I was the lead Business Analyst for a comprehensive fleet management system. My role included:</p>
+                        <ul>
+                            <li><span class="list-item-icon purple">🗺️</span>Gathering requirements for features such as real-time asset tracking, geofencing, and route optimization.</li>
+                            <li><span class="list-item-icon red">🔧</span>Designing the maintenance scheduling module to automate service reminders and reduce vehicle downtime by 25%.</li>
+                            <li><span class="list-item-icon blue">📈</span>Creating user stories and acceptance criteria for a mobile application that simplified field operations for drivers and managers.</li>
+                        </ul>
                         <p><strong>Tags:</strong> Fleet Management, Asset Tracking, Maintenance</p>
                     </div>
                 `,
                 'Natural Energies Platform': `
                     <div class="modal-info-item">
-                        <p>Designed analytics dashboards for renewable asset performance, cutting compliance reporting time by 50%. Added a detailed project description here.</p>
+                        <h3>Project Details</h3>
+                        <p>This project focused on creating a platform for managing and analyzing data from renewable energy assets. I worked on:</p>
+                        <ul>
+                            <li><span class="list-item-icon blue">📊</span>Defining requirements for analytics dashboards that visualize asset performance, energy generation, and consumption data.</li>
+                            <li><span class="list-item-icon purple">📝</span>Analyzing data flows and reporting needs to design a system that cut compliance reporting time by 50%.</li>
+                            <li><span class="list-item-icon red">⚙️</span>Ensuring the platform's features enabled sustainable business decision-making for clients in the renewable energy sector.</li>
+                        </ul>
                         <p><strong>Tags:</strong> Renewable Energy, Analytics, Dashboards</p>
                     </div>
                 `,
                 'Publication ERP': `
                     <div class="modal-info-item">
-                        <p>Managed end-to-end publication workflows, from manuscript submission to distribution, improving efficiency and reducing time-to-market. Implemented a scalable ERP system to handle large volumes of publications, including books and notebooks.</p>
+                        <h3>Project Details</h3>
+                        <p>I managed the end-to-end implementation of an ERP system for a publication company. Key responsibilities included:</p>
+                        <ul>
+                            <li><span class="list-item-icon purple">✍️</span>Analyzing and automating workflows from manuscript submission to final distribution.</li>
+                            <li><span class="list-item-icon red">📦</span>Designing modules for inventory management of books and notebooks.</li>
+                            <li><span class="list-item-icon blue">✅</span>Ensuring the system improved overall efficiency and reduced the time-to-market for publications.</li>
+                        </ul>
                         <p><strong>Tags:</strong> ERP, Publication, Workflow Automation</p>
                     </div>
                 `,
                 'Inventory Management': `
                     <div class="modal-info-item">
-                        <p>Implemented a real-time inventory tracking system, optimizing stock levels and reducing carrying costs. Integrated with various supply chain components to provide end-to-end visibility.</p>
+                        <h3>Project Details</h3>
+                        <p>This project involved developing a real-time inventory tracking system, optimizing stock levels and reducing carrying costs. My role was to:</p>
+                        <ul>
+                            <li><span class="list-item-icon blue">🔍</span>Gather requirements for a centralized system that provides end-to-end visibility of inventory.</li>
+                            <li><span class="list-item-icon purple">📈</span>Design features for demand forecasting and automated reordering to prevent stockouts.</li>
+                            <li><span class="list-item-icon red">🤝</span>Integrate the system with various supply chain components, such as a warehouse management system.</li>
+                        </ul>
                         <p><strong>Tags:</strong> Inventory, Supply Chain, Logistics</p>
                     </div>
                 `,
                 'HR Payroll': `
                     <div class="modal-info-item">
-                        <p>Developed a comprehensive HR and payroll system, automating salary calculations, tax compliance, and employee data management. Enhanced accuracy and efficiency of payroll processing.</p>
+                        <h3>Project Details</h3>
+                        <p>Developed a comprehensive HR and payroll system, automating salary calculations, tax compliance, and employee data management. Enhanced accuracy and efficiency of payroll processing. My key contributions included:</p>
+                        <ul>
+                            <li><span class="list-item-icon purple">⚙️</span>Automating salary calculations and tax compliance to enhance payroll accuracy and efficiency.</li>
+                            <li><span class="list-item-icon red">📋</span>Designing a secure database for employee data management.</li>
+                            <li><span class="list-item-icon blue">🎯</span>Ensuring the system complied with all relevant labor laws and regulations.</li>
+                        </ul>
                         <p><strong>Tags:</strong> HR, Payroll, Compliance</p>
                     </div>
                 `,
                 'AI Integrated Banking Application Form': `
                     <div class="modal-info-item">
-                        <p>Created an AI-powered banking application form that uses machine learning to pre-populate fields, verify documents, and detect fraud, significantly reducing manual effort and processing time.</p>
-                        <p><strong>Tags:</strong> AI, Banking, Fintech</p>
+                        <h3>Project Details</h3>
+                        <p>This project involved creating an AI-powered banking application form to improve user experience and operational efficiency. I was responsible for:</p>
+                        <ul>
+                            <li><span class="list-item-icon blue">🧠</span>Defining the requirements for AI features, such as automated form field pre-population and document verification.</li>
+                            <li><span class="list-item-icon purple">🛡️</span>Designing the workflow for fraud detection and compliance checks using machine learning models.</li>
+                            <li><span class="list-item-icon red">🎯</span>Working with the UX/UI team to ensure a seamless and intuitive user journey for applicants.</li>
+                        </ul>
+                        <p><strong>Tags:</strong> AI, Banking, User Experience</p>
                     </div>
                 `,
                 'Talent Acquisition AI Tool': `
                     <div class="modal-info-item">
-                        <p>Developed a custom AI tool to automate resume screening and candidate matching based on job requirements and skill sets. This tool significantly reduced recruitment time and improved the quality of candidates.</p>
+                        <h3>Project Details</h3>
+                        <p>I led the analysis for an AI tool designed to streamline the talent acquisition process. My contributions were:</p>
+                        <ul>
+                            <li><span class="list-item-icon purple">🤖</span>Gathering requirements for an automated resume screening feature that uses natural language processing to match candidates with job descriptions.</li>
+                            <li><span class="list-item-icon red">📈</span>Defining metrics for measuring the tool's effectiveness, such as reduction in time-to-hire and improvement in candidate quality.</li>
+                            <li><span class="list-item-icon blue">🤝</span>Working with stakeholders to ensure the tool's features align with the company's recruitment strategy.</li>
+                        </ul>
                         <p><strong>Tags:</strong> AI, Recruitment, HR Tech</p>
                     </div>
                 `,
@@ -1240,10 +1474,115 @@
                 `
             };
 
+            // Content for Technical Skills
+            const skillsData = {
+                'JIRA': `
+                    <div class="modal-info-item">
+                        <h3>JIRA</h3>
+                        <p>Proficient in using JIRA for issue tracking, project management, and workflow automation. Experienced in creating and managing Scrum and Kanban boards, user stories, epics, and dashboards to support Agile teams.</p>
+                    </div>
+                `,
+                'Confluence': `
+                    <div class="modal-info-item">
+                        <h3>Confluence</h3>
+                        <p>Skilled in using Confluence as a collaborative documentation tool. Experienced in creating and organizing project documentation, knowledge bases, and meeting notes to ensure team alignment and information accessibility.</p>
+                    </div>
+                `,
+                'Excel': `
+                    <div class="modal-info-item">
+                        <h3>Excel</h3>
+                        <p>Expert in data analysis, reporting, and visualization using Microsoft Excel. Proficient in creating pivot tables, VLOOKUP, and other advanced functions to analyze large datasets and generate business insights.</p>
+                    </div>
+                `,
+                'Word': `
+                    <div class="modal-info-item">
+                        <h3>Word</h3>
+                        <p>Adept in creating professional and well-structured documents, including Business Requirement Documents (BRDs), Functional Specification Documents (FSDs), and project reports.</p>
+                    </div>
+                `,
+                'Figma': `
+                    <div class="modal-info-item">
+                        <h3>Figma</h3>
+                        <p>Familiar with using Figma for creating wireframes, prototypes, and user interface designs to visualize new features and user flows before development begins.</p>
+                    </div>
+                `,
+                'Draw.io': `
+                    <div class="modal-info-item">
+                        <h3>Draw.io</h3>
+                        <p>Proficient in creating various types of diagrams and flowcharts, including process flow diagrams, system architecture diagrams, and BPMN models to document and communicate complex business processes.</p>
+                    </div>
+                `,
+                'Balsamiq': `
+                    <div class="modal-info-item">
+                        <h3>Balsamiq</h3>
+                        <p>Skilled in using Balsamiq for rapid wireframing and prototyping to quickly sketch out user interfaces and gather early feedback from stakeholders.</p>
+                    </div>
+                `,
+                'SQL': `
+                    <div class="modal-info-item">
+                        <h3>SQL</h3>
+                        <p>Experienced in writing and executing SQL queries to retrieve, analyze, and manipulate data from various databases for reporting and data validation purposes.</p>
+                    </div>
+                `,
+                'ERPNext': `
+                    <div class="modal-info-item">
+                        <h3>ERPNext</h3>
+                        <p>Hands-on experience in configuring, customizing, and implementing ERPNext for various business functions, including manufacturing, inventory management, and HR.</p>
+                    </div>
+                `,
+                'Salesforce': `
+                    <div class="modal-info-item">
+                        <h3>Salesforce</h3>
+                        <p>Experienced in working with Salesforce to manage customer relationships, automate sales and marketing workflows, and create custom dashboards and reports to track key performance indicators (KPIs).</p>
+                    </div>
+                `,
+                'Requirement Elicitation & Analysis': `
+                    <div class="modal-info-item">
+                        <h3>Requirement Elicitation & Analysis</h3>
+                        <p>A specialist in the systematic process of gathering, validating, and documenting business and functional requirements. I utilize a range of techniques, including stakeholder interviews, surveys, workshops, document analysis, and process observation to ensure a comprehensive understanding of business needs. My expertise ensures that requirements are clear, concise, and aligned with project goals, minimizing scope creep and rework.</p>
+                    </div>
+                `,
+                'Stakeholder Management': `
+                    <div class="modal-info-item">
+                        <h3>Stakeholder Management</h3>
+                        <p>Skilled in identifying, analyzing, and engaging with stakeholders to build strong professional relationships. I effectively manage stakeholder expectations, resolve conflicts, and ensure alignment between business objectives and project deliverables. My communication skills are key to bridging the gap between technical teams and business users, ensuring all parties are informed and engaged throughout the project lifecycle.</p>
+                    </div>
+                `,
+                'Process Modeling (BPMN)': `
+                    <div class="modal-info-item">
+                        <h3>Process Modeling (BPMN)</h3>
+                        <p>Proficient in using Business Process Model and Notation (BPMN) to create clear, standardized visual representations of business processes. I use these models to identify inefficiencies, propose improvements, and communicate complex workflows to both technical and non-technical audiences. This skill is critical for process optimization and system design.</p>
+                    </div>
+                `,
+                'Data Analysis & Reporting': `
+                    <div class="modal-info-item">
+                        <h3>Data Analysis & Reporting</h3>
+                        <p>Expert in analyzing business data to identify trends, opportunities, and insights. I use tools like Excel and SQL to extract, transform, and load data, and I create comprehensive reports and dashboards to support data-driven decision-making. My reporting skills help stakeholders monitor performance, track key metrics, and measure the success of implemented solutions.</p>
+                    </div>
+                `,
+                'Agile Methodologies': `
+                    <div class="modal-info-item">
+                        <h3>Agile Methodologies</h3>
+                        <p>Experienced in leading and participating in Agile Scrum environments. I am proficient in all Agile ceremonies, including daily stand-ups, sprint planning, retrospectives, and backlog grooming. My role involves ensuring the team stays on track, removing impediments, and adapting to changing requirements to deliver high-quality products efficiently.</p>
+                    </div>
+                `,
+                'User Stories & Acceptance Criteria': `
+                    <div class="modal-info-item">
+                        <h3>User Stories & Acceptance Criteria</h3>
+                        <p>Skilled in writing clear, concise, and actionable user stories that capture the user's perspective and needs. I create detailed acceptance criteria to define the conditions for a story to be considered "done," ensuring the final product meets all specified requirements. This practice is fundamental to effective communication and quality assurance in Agile projects.</p>
+                    </div>
+                `
+            };
+
+
             if (experienceData[item]) {
                 content = experienceData[item];
             } else if (projectData[item]) {
                 content = projectData[item];
+            } else if (competenciesData[item]) {
+                content = competenciesData[item];
+            } else if (skillsData[item]) {
+                content = skillsData[item];
             } else if (item === 'Terms of Use' || item === 'Privacy Policy') {
                 content = projectData[item];
             }
@@ -1254,6 +1593,78 @@
 
         function closeModal() {
             document.getElementById('infoModal').style.display = 'none';
+        }
+
+        function createExpertiseRadarChart() {
+            const ctx = document.getElementById('expertiseRadarChart').getContext('2d');
+            const data = {
+                labels: ['US Healthcare', 'ERP Implementation', 'CRM Systems', 'Agile & Scrum', 'Stakeholder Mgmt.'],
+                datasets: [{
+                    label: 'Expertise Level',
+                    data: [95, 90, 85, 95, 90],
+                    backgroundColor: 'rgba(0, 212, 255, 0.2)',
+                    borderColor: '#00d4ff',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#00d4ff',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#00d4ff'
+                }]
+            };
+            const config = {
+                type: 'radar',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: {
+                        line: {
+                            tension: 0
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(224, 230, 237, 0.2)'
+                            },
+                            grid: {
+                                color: 'rgba(224, 230, 237, 0.2)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 14
+                                },
+                                color: '#e0e6ed'
+                            },
+                            ticks: {
+                                display: false
+                            },
+                            min: 0,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.r !== null) {
+                                        label += context.parsed.r + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            new Chart(ctx, config);
         }
     </script>
 </body>
